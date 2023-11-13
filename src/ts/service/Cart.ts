@@ -12,18 +12,16 @@ export default class Cart {
     }
 
     sum(): number {
-        let sum = 0;
-        this._items.forEach(item => {
-            sum += item.price;
-        })
+        const sum = this._items.reduce((currentSum, currentNumber) => {
+            return currentSum + currentNumber.price;
+        }, 0)
 
         return sum;
     }
 
     discountSum(discount: number): number {
-        let sum = this.sum();
-        let discountSum = sum - sum * discount;
-        return discountSum;
+        const sum = this.sum();
+        return sum - sum * discount;
     }
 
     deleteProduct(id: number): void {
